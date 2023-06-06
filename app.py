@@ -41,7 +41,7 @@ def announce_rank_change(user, change, rank_diff, osu_users, diff):
         ranks = osu_users,
         diff = diff
     )
-    print(message)
+    send_webhook_message(message)
 
 def send_webhook_message(message):
     payload = {
@@ -64,8 +64,7 @@ while True:
     with open("scores.json", "r") as scores:
         if os.path.getsize("scores.json") != 0:
             compare_scores(osu_users, json.loads(scores.read()))
-
-        
+    
     with open("scores.json", "w") as scores:
         json.dump(osu_users, scores)
     time.sleep(1 * 60)
